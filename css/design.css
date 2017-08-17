@@ -34,7 +34,8 @@ body{
       font-size: 14px;
     }
 
-    .page-header .student-search button{
+    .page-header .student-search button,
+    .page button{
       border-radius: 5px;
       border: 1px solid #eaeaea;
       padding: 8px 15px;
@@ -102,6 +103,7 @@ body{
  
   .pagination li{
     display: inline;
+    margin-right: 5px;
   }
 
     .pagination li a{
