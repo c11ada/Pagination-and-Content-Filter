@@ -1,7 +1,7 @@
 const studentItems = $('.student-item');
 const names = $('h3');
 // variable to store max number of students per page
-let maxPerPage = 5;
+let maxPerPage = 10;
 
 // 
 // Hide or Display list of students
