@@ -67,7 +67,7 @@ const appendPageLinks = (studentList) =>{
         pageElement.querySelector('.pagination').remove();
     }
 
-    // create ne pagination
+    // create new pagination
     let paginationDiv = document.createElement('div');
     let ulElement = document.createElement('ul');
 

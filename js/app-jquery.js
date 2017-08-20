@@ -1,17 +1,25 @@
 const studentItems = $('.student-item');
 const names = $('h3');
-let maxPerPage = 10;
+// variable to store max number of students per page
+let maxPerPage = 5;
 
+// 
+// Hide or Display list of students
+// 
+// @param {number} pageNumber
+// @param {array} studentList
+// 
 const showPage = (pageNumber, studentList) => {
-    // hide all students
-
-    $('.student-item').css('display','none');
-
+    // calculate the number of students
     let numberOfStudent = studentList.length;
+    // calculate the min and max students to show
     let min = pageNumber * maxPerPage - maxPerPage;
-    console.log(min);
     let max  = pageNumber * maxPerPage - 1;
 
+    // hide all students
+    $('.student-item').css('display','none');
+
+    // if max is more than array max is set to lenght of array 
     if(max > studentList.length) {
         max = studentList.length - 1;
     }
@@ -25,18 +33,23 @@ const showPage = (pageNumber, studentList) => {
             $(this).css('display','none');
         }
     });
-
 };
 
+// 
+// appends pagination link at the bottom of page
+// @param {array} studentList
+// 
 const appendPageLinks = (studentList) => {
     let numberOfStudents = studentList.length;
     // calculate the number of pages needed
     let numberOfPages = Math.ceil(numberOfStudents / maxPerPage);
 
+    // if pagination already exist remove it
     if($('.pagination')) {
         $('.pagination').remove();
     }
 
+    // create new pagination
     let pagination = $("<div>", {"class":"pagination"});
     let paginationUl = $('<ul>');
     pagination.append(paginationUl);
@@ -51,10 +64,13 @@ const appendPageLinks = (studentList) => {
         paginationLiItem.append(paginationAnchorItem);
         paginationUl.append(paginationLiItem);
 
+        // add event listner to a element 
         paginationAnchorItem.on('click', function(){
             // alert($(this).text());
             showPage($(this).text(),studentList);
+            // remove all the active classes
             $('.pagination a').removeClass('active');
+            // make current link active
             $(this).toggleClass('active');
         });
 
@@ -65,6 +81,9 @@ const appendPageLinks = (studentList) => {
     }   
 };
 
+//
+// Create search box at the top of the page
+//
 const searchBox = () => {
     const searchDiv = $('<div class="student-search">' +
                         '<input placeholder="Search for students...">' +
@@ -72,11 +91,16 @@ const searchBox = () => {
                         '</div>');
     $('.page-header').append(searchDiv);
 
+    // add event listner to searh button
     $('.student-search button').on('click', function(){
         searchList($('.student-search input').val());
     });
 }
 
+//
+// searches studnet list in email and name given a search term
+// @param {string} value
+//
 const searchList = (searchVal) => {
     let searchResult = [];
 
